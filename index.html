@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tip Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      section > h1 {
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      #order-total {
+        width: 100px;
+        height: 1.3rem;
+      }
+
+      #tip-amount {
+        width: 100px;
+        height: 1.5rem;
+      }
+
+      .input-options {
+        width: 100%;
+      }
+
+      button {
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>Tip Calculator</h1>
+        <div class="input-options">
+          <input
+            type="text"
+            name="order-total"
+            id="order-total"
+            placeholder="Enter order total"
+          />
+
+          <select name="tip-amount" id="tip-amount">
+            <option value="15">15%</option>
+            <option value="18">18%</option>
+            <option value="20">20%</option>
+            <option value="22">22%</option>
+            <option value="25">25%</option>
+          </select>
+        </div>
+
+        <button onclick="calculateTip()" type="button" id="cal-btn">
+          Calculate
+        </button>
+
+        <div>
+          <p>Your Total Tip is: <span id="total-tip">0</span></p>
+          <p>Your Grand Total is: <span id="grand-total">0</span></p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function calculateTip() {
+        let orderTotal = document.querySelector("#order-total");
+        orderTotal = parseInt(orderTotal.value);
+
+        let tipAmount = document.querySelector("#tip-amount");
+        tipAmount = parseInt(tipAmount.value);
+
+        let totalTip = document.querySelector("#total-tip");
+
+        let grandTotal = document.querySelector("#grand-total");
+
+        let total = Math.floor((orderTotal * tipAmount) / 100);
+        totalTip.innerHTML = total;
+
+        grandTotal.innerHTML = orderTotal + total;
+      }
+    </script>
+  </body>
+</html>
